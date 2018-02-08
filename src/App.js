@@ -10,8 +10,10 @@ class App extends Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.state = {
 			personValue: '',
+			people: [],
 		};
 	}
+
 	handleChange(value) {
 		this.setState((prevState, props) => {
 			return {
@@ -19,11 +21,23 @@ class App extends Component {
 			};
 		});
 	}
+
+	updatePeopleArray(people) {
+		this.setState((prevState, props) => {
+			return {
+				people: people,
+			};
+		});
+	}
+
 	fetchPeople(e) {
 		const { value } = e.target;
 		this.handleChange(value);
-		getData(value);
+		getData(value).then(response => {
+			this.updatePeopleArray(response.results);
+		});
 	}
+
 	render() {
 		return (
 			<div className="App">
@@ -35,6 +49,9 @@ class App extends Component {
 					To get started, edit <code>src/App.js</code> and save to reload.
 				</p>
 				<input value={this.state.personValue} onChange={this.fetchPeople} />
+				{this.state.people.map((person, i) => {
+					return <div key={i}>{person.name}</div>;
+				})}
 			</div>
 		);
 	}
