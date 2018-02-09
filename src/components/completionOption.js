@@ -1,7 +1,7 @@
-import react from 'react';
+import React from 'react';
 
 const CompletionOption = props => {
 	return <li>{props.name}</li>;
 };
 
-export default completionOption;
+export default CompletionOption;

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { getData } from './utils/api';
-import OpeningCrawl from './components/openingCrawl';
+import Logo from './components/Logo';
+import CompletionOption from './components/CompletionOption';
 
 class App extends Component {
 	constructor(props) {
@@ -42,18 +43,29 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-			<OpeningCrawl />
 				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
+					<h1 className="App-title">People finder</h1>
 				</header>
-				<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to reload.
-				</p>
-				<input value={this.state.personValue} onChange={this.fetchPeople} />
-				{this.state.people.map((person, i) => {
-					return <div key={i}>{person.name}</div>;
-				})}
+				<div className="App__content">
+					<span className="input input--jiro">
+						<input
+							className="input__field input__field--jiro"
+							type="text"
+							id="input-10"
+							value={this.state.personValue}
+							onChange={this.fetchPeople}
+						/>
+						<label className="input__label input__label--jiro" htmlFor="input-10">
+							<span className="input__label-content input__label-content--jiro">Cat's Name</span>
+						</label>
+					</span>
+
+					<ul>
+						{this.state.people.map((person, i) => {
+							return <CompletionOption key={i} name={person.name} />;
+						})}
+					</ul>
+				</div>
 			</div>
 		);
 	}
