@@ -25,9 +25,11 @@ class App extends Component {
 	}
 
 	updatePeopleArray(people) {
+		let value;
+		this.state.personValue === '' ? (value = []) : (value = people);
 		this.setState((prevState, props) => {
 			return {
-				people: people,
+				people: value,
 			};
 		});
 	}
@@ -44,27 +46,28 @@ class App extends Component {
 		return (
 			<div className="App">
 				<header className="App-header">
+					<Logo />
 					<h1 className="App-title">People finder</h1>
 				</header>
 				<div className="App__content">
-					<span className="input input--jiro">
+					<div className="App__search">
 						<input
-							className="input__field input__field--jiro"
+							className="search__field"
 							type="text"
 							id="input-10"
+							placeholder="Search for your favourite character here"
 							value={this.state.personValue}
 							onChange={this.fetchPeople}
 						/>
-						<label className="input__label input__label--jiro" htmlFor="input-10">
-							<span className="input__label-content input__label-content--jiro">Cat's Name</span>
-						</label>
-					</span>
+					</div>
 
-					<ul>
-						{this.state.people.map((person, i) => {
-							return <CompletionOption key={i} name={person.name} />;
-						})}
-					</ul>
+					<div className="App__results">
+						<ul class="search__results">
+							{this.state.people.map((person, i) => {
+								return <CompletionOption key={i} person={person} />;
+							})}
+						</ul>
+					</div>
 				</div>
 			</div>
 		);
