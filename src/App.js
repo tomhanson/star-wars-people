@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { getData } from './utils/api';
-import Logo from './components/Logo';
+import Header from './components/Header';
 import CompletionOption from './components/CompletionOption';
 
 class App extends Component {
@@ -70,14 +69,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<audio preload="auto">
-					<source src="https://s.cdpn.io/1202/Star_Wars_original_opening_crawl_1977.ogg" type="audio/ogg" />
-					<source src="https://s.cdpn.io/1202/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg" />
-				</audio>
-				<header className="App-header">
-					<Logo />
-					<h1 className="App-title"> People finder </h1>
-				</header>
+				<Header />
 				<div className="App__content">
 					<div className="App__search">
 						<input
@@ -89,7 +81,6 @@ class App extends Component {
 							value={this.state.personValue}
 							onChange={this.fetchPeople}
 							onFocus={this.fetchPeople}
-							// onKeyDown={this.scrollSelections}
 						/>
 					</div>
 					<div className="App__results">
