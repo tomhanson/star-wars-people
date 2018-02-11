@@ -10,9 +10,11 @@ class App extends Component {
 		super(props);
 		this.fetchPeople = this.fetchPeople.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.scrollSelections = this.scrollSelections.bind(this);
 		this.state = {
 			personValue: '',
 			people: [],
+			selected: -1,
 		};
 	}
 
@@ -20,18 +22,41 @@ class App extends Component {
 		this.setState((prevState, props) => {
 			return {
 				personValue: value,
+				selected: 0,
 			};
 		});
 	}
 
 	updatePeopleArray(people) {
-		let value;
-		this.state.personValue === '' ? (value = []) : (value = people);
 		this.setState((prevState, props) => {
 			return {
-				people: value,
+				people: people,
 			};
 		});
+	}
+
+	scrollSelections(e) {
+		//38 up 40 down
+		if (this.state.personValue !== '') {
+			if (e.which === 38) {
+				console.log(this.state.personValue);
+				let value = this.state.selected !== 0 ? this.state.selected - 1 : this.state.people.length - 1;
+				this.setState((prevState, props) => {
+					return {
+						selected: value,
+						personValue: this.state.people[value].name,
+					};
+				});
+			} else if (e.which === 40) {
+				let value = this.state.selected !== this.state.people.length - 1 ? this.state.selected + 1 : 0;
+				this.setState((prevState, props) => {
+					return {
+						selected: value,
+						personValue: this.state.people[value].name,
+					};
+				});
+			}
+		}
 	}
 
 	fetchPeople(e) {
@@ -45,24 +70,30 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
+				<audio preload="auto">
+					<source src="https://s.cdpn.io/1202/Star_Wars_original_opening_crawl_1977.ogg" type="audio/ogg" />
+					<source src="https://s.cdpn.io/1202/Star_Wars_original_opening_crawl_1977.mp3" type="audio/mpeg" />
+				</audio>
 				<header className="App-header">
 					<Logo />
-					<h1 className="App-title">People finder</h1>
+					<h1 className="App-title"> People finder </h1>
 				</header>
 				<div className="App__content">
 					<div className="App__search">
 						<input
+							autoComplete="off"
 							className="search__field"
 							type="text"
 							id="input-10"
 							placeholder="Search for your favourite character here"
 							value={this.state.personValue}
 							onChange={this.fetchPeople}
+							onFocus={this.fetchPeople}
+							// onKeyDown={this.scrollSelections}
 						/>
 					</div>
-
 					<div className="App__results">
-						<ul class="search__results">
+						<ul className="search__results">
 							{this.state.people.map((person, i) => {
 								return <CompletionOption key={i} person={person} />;
 							})}
