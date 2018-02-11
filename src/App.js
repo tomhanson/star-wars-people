@@ -33,31 +33,6 @@ class App extends Component {
 			};
 		});
 	}
-
-	scrollSelections(e) {
-		//38 up 40 down
-		if (this.state.personValue !== '') {
-			if (e.which === 38) {
-				console.log(this.state.personValue);
-				let value = this.state.selected !== 0 ? this.state.selected - 1 : this.state.people.length - 1;
-				this.setState((prevState, props) => {
-					return {
-						selected: value,
-						personValue: this.state.people[value].name,
-					};
-				});
-			} else if (e.which === 40) {
-				let value = this.state.selected !== this.state.people.length - 1 ? this.state.selected + 1 : 0;
-				this.setState((prevState, props) => {
-					return {
-						selected: value,
-						personValue: this.state.people[value].name,
-					};
-				});
-			}
-		}
-	}
-
 	fetchPeople(e) {
 		const { value } = e.target;
 		this.handleChange(value);
