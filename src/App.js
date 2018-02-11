@@ -9,7 +9,7 @@ class App extends Component {
 		super(props);
 		this.fetchPeople = this.fetchPeople.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-		this.scrollSelections = this.scrollSelections.bind(this);
+		this.updatePeopleArray = this.updatePeopleArray.bind(this);
 		this.state = {
 			personValue: '',
 			people: [],
