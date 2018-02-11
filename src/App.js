@@ -65,7 +65,10 @@ class App extends Component {
 			this.updatePeopleArray(response.results);
 		});
 	}
-
+	componentDidMount() {
+		const audio = document.querySelector('audio');
+		audio.play();
+	}
 	render() {
 		return (
 			<div className="App">

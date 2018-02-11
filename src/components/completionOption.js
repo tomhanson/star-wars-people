@@ -16,35 +16,35 @@ const CompletionOption = props => {
 			<table>
 				<tbody>
 					<tr>
-						<td>Name</td>
+						<td>Name:</td>
 						<td>{name}</td>
 					</tr>
 					<tr>
-						<td>Height</td>
+						<td>Height:</td>
 						<td>{height}</td>
 					</tr>
 					<tr>
-						<td>Weight</td>
+						<td>Weight:</td>
 						<td>{mass}</td>
 					</tr>
 					<tr>
-						<td>Hair Colour</td>
+						<td>Hair Colour:</td>
 						<td>{hair}</td>
 					</tr>
 					<tr>
-						<td>Skin Colour</td>
+						<td>Skin Colour:</td>
 						<td>{skin}</td>
 					</tr>
 					<tr>
-						<td>Eye Colour</td>
+						<td>Eye Colour:</td>
 						<td>{eyes}</td>
 					</tr>
 					<tr>
-						<td>Year of Birth</td>
+						<td>Year of Birth:</td>
 						<td>{birth_year}</td>
 					</tr>
 					<tr>
-						<td>Gender</td>
+						<td>Gender:</td>
 						<td>{gender}</td>
 					</tr>
 				</tbody>
