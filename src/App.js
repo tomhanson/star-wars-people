@@ -13,20 +13,20 @@ class App extends Component {
 		this.state = {
 			personValue: '',
 			people: [],
-			selected: -1,
 		};
 	}
 
 	handleChange(value) {
+		//controlled component updating state
 		this.setState((prevState, props) => {
 			return {
 				personValue: value,
-				selected: 0,
 			};
 		});
 	}
 
 	updatePeopleArray(people) {
+		//update state
 		this.setState((prevState, props) => {
 			return {
 				people: people,
@@ -34,15 +34,20 @@ class App extends Component {
 		});
 	}
 	fetchPeople(e) {
+		//get the input value
 		const { value } = e.target;
+		//update state for controlled component
 		this.handleChange(value);
+		//fetch some new data with the search param
 		getData(value).then(response => {
 			this.updatePeopleArray(response.results);
 		});
 	}
 	componentDidMount() {
+		//start the audio
 		const audio = document.querySelector('audio');
-		audio.play();
+		//if you have audio then play it
+		if (audio) audio.play();
 	}
 	render() {
 		return (

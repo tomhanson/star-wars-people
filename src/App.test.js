@@ -4,14 +4,13 @@ import App from './App';
 
 import { getData } from './utils/api';
 
-it('renders without crashing', () => {
+it('App renders without crashing', () => {
 	const div = document.createElement('div');
 	ReactDOM.render(<App />, div);
 	ReactDOM.unmountComponentAtNode(div);
 });
 
-// A simple example test
-describe('get some star wars data', () => {
+describe('Fetch Star Wars Data', () => {
 	it('should load star wars data', () => {
 		return getData('luke skywalker').then(data => {
 			expect(data).toBeDefined();

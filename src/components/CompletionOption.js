@@ -1,6 +1,7 @@
 import React from 'react';
 
 const CompletionOption = props => {
+	//destructure from props for ease
 	const {
 		name,
 		height,
