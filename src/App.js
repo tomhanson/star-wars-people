@@ -44,7 +44,7 @@ class App extends Component {
 		});
 	}
 	componentDidMount() {
-		//start the audio
+		//get audio
 		const audio = document.querySelector('audio');
 		//if you have audio then play it
 		if (audio) audio.play();
